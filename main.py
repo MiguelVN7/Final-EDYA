@@ -128,3 +128,18 @@ persona_mas_solicitudes = max(suma_solicitudes, key=suma_solicitudes.get)
 
 # Imprimir con el numero de solicitudes
 print(f'La persona con la mayor suma de solicitudes enviadas y recibidas es: {persona_mas_solicitudes} con {suma_solicitudes[persona_mas_solicitudes]} solicitudes.')
+
+print()
+# Diccionario para almacenar los amigos de cada persona
+amigos = {nombre: set() for nombre in nombres}
+
+# Recorrer los datos y agregar los amigos
+for relacion in data:
+    amigos[relacion['nombre_emisor']].add(relacion['nombre_receptor'])
+    amigos[relacion['nombre_receptor']].add(relacion['nombre_emisor'])
+
+# Encontrar la persona con más amigos
+persona_mas_amigos = max(amigos, key=lambda x: len(amigos[x]))
+
+# Imprimir la persona y el número de amigos
+print(f'La persona con más amigos es: {persona_mas_amigos} con {len(amigos[persona_mas_amigos])} amigos.')
